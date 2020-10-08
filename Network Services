@@ -1,0 +1,238 @@
+#nmap Scan result:
+
+
+PORT    STATE SERVICE     VERSION                                                                                                                                                                            
+22/tcp  open  ssh         OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)                                                                                                                       
+| ssh-hostkey:                                                                                                                                                                                               
+|   2048 91:df:5c:7c:26:22:6e:90:23:a7:7d:fa:5c:e1:c2:52 (RSA)                                                                                                                                               
+|   256 86:57:f5:2a:f7:86:9c:cf:02:c1:ac:bc:34:90:6b:01 (ECDSA)                                                                                                                                              
+|_  256 81:e3:cc:e7:c9:3c:75:d7:fb:e0:86:a0:01:41:77:81 (ED25519)                                                                                                                                            
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)                                                                                                                                        
+445/tcp open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: WORKGROUP)                                                                                                                                     
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).                                                                                                          
+TCP/IP fingerprint:                                                                                                                                                                                          
+OS:SCAN(V=7.80%E=4%D=10/7%OT=22%CT=1%CU=35534%PV=Y%DS=2%DC=T%G=Y%TM=5F7DE75                                                                                                                                  
+OS:C%P=x86_64-pc-linux-gnu)SEQ(SP=FE%GCD=1%ISR=109%TI=Z%CI=Z%II=I%TS=A)OPS(                                                                                                                                  
+OS:O1=M508ST11NW7%O2=M508ST11NW7%O3=M508NNT11NW7%O4=M508ST11NW7%O5=M508ST11
+OS:NW7%O6=M508ST11)WIN(W1=F4B3%W2=F4B3%W3=F4B3%W4=F4B3%W5=F4B3%W6=F4B3)ECN(
+OS:R=Y%DF=Y%T=40%W=F507%O=M508NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS
+OS:%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=
+OS:Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=
+OS:R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T
+OS:=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=
+OS:S)
+
+Uptime guess: 31.326 days (since Sun Sep  6 04:16:42 2020)
+Network Distance: 2 hops
+TCP Sequence Prediction: Difficulty=254 (Good luck!)
+IP ID Sequence Generation: All zeros
+Service Info: Host: POLOSMB; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1s, deviation: 0s, median: 0s
+| nbstat: NetBIOS name: POLOSMB, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| Names:
+|   POLOSMB<00>          Flags: <unique><active>
+|   POLOSMB<03>          Flags: <unique><active>
+|   POLOSMB<20>          Flags: <unique><active>
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+|   WORKGROUP<00>        Flags: <group><active>
+|   WORKGROUP<1d>        Flags: <unique><active>
+|_  WORKGROUP<1e>        Flags: <group><active>
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
+|   Computer name: polosmb
+|   NetBIOS computer name: POLOSMB\x00
+|   Domain name: \x00
+|   FQDN: polosmb
+|_  System time: 2020-10-07T16:05:42+00:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-10-07T16:05:42
+|_  start_date: N/A
+
+enum4linux:
+
+
+ ========================== 
+|    Target Information    |
+ ========================== 
+Target ........... 10.10.201.251
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ ===================================================== 
+|    Enumerating Workgroup/Domain on 10.10.201.251    |
+ ===================================================== 
+[+] Got domain/workgroup name: WORKGROUP
+
+ ============================================= 
+|    Nbtstat Information for 10.10.201.251    |
+ ============================================= 
+Looking up status of 10.10.201.251
+        POLOSMB         <00> -         B <ACTIVE>  Workstation Service
+        POLOSMB         <03> -         B <ACTIVE>  Messenger Service
+        POLOSMB         <20> -         B <ACTIVE>  File Server Service
+        ..__MSBROWSE__. <01> - <GROUP> B <ACTIVE>  Master Browser
+        WORKGROUP       <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+        WORKGROUP       <1d> -         B <ACTIVE>  Master Browser
+        WORKGROUP       <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+
+        MAC Address = 00-00-00-00-00-00
+
+ ====================================== 
+|    Session Check on 10.10.201.251    |
+ ====================================== 
+[+] Server 10.10.201.251 allows sessions using username '', password ''
+
+ ============================================ 
+|    Getting domain SID for 10.10.201.251    |
+ ============================================ 
+Domain Name: WORKGROUP
+Domain Sid: (NULL SID)
+[+] Can't determine if host is part of domain or part of a workgroup
+
+ ======================================= 
+|    OS information on 10.10.201.251    |
+ ======================================= 
+Use of uninitialized value $os_info in concatenation (.) or string at ./enum4linux.pl line 464.
+[+] Got OS info for 10.10.201.251 from smbclient: 
+[+] Got OS info for 10.10.201.251 from srvinfo:
+Could not initialise srvsvc. Error was NT_STATUS_INVALID_NETWORK_RESPONSE
+
+ ============================== 
+|    Users on 10.10.201.251    |
+ ============================== 
+Use of uninitialized value $users in print at ./enum4linux.pl line 874.
+Use of uninitialized value $users in pattern match (m//) at ./enum4linux.pl line 877.
+
+Use of uninitialized value $users in print at ./enum4linux.pl line 888.
+Use of uninitialized value $users in pattern match (m//) at ./enum4linux.pl line 890.
+
+ ========================================== 
+|    Share Enumeration on 10.10.201.251    |
+ ========================================== 
+tstream_smbXcli_np_destructor: cli_close failed on pipe srvsvc. Error was NT_STATUS_IO_TIMEOUT
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        netlogon        Disk      Network Logon Service
+        profiles        Disk      Users profiles
+        print$          Disk      Printer Drivers
+        IPC$            IPC       IPC Service (polosmb server (Samba, Ubuntu))
+SMB1 disabled -- no workgroup available
+
+[+] Attempting to map shares on 10.10.201.251
+//10.10.201.251/netlogon        [E] Can't understand response:
+tree connect failed: NT_STATUS_BAD_NETWORK_NAME
+//10.10.201.251/profiles        Mapping: OK, Listing: OK
+//10.10.201.251/print$  Mapping: DENIED, Listing: N/A
+//10.10.201.251/IPC$    [E] Can't understand response:
+NT_STATUS_OBJECT_NAME_NOT_FOUND listing \*
+
+ ===================================================== 
+|    Password Policy Information for 10.10.201.251    |
+ ===================================================== 
+
+
+[+] Attaching to 10.10.201.251 using a NULL share
+
+[+] Trying protocol 139/SMB...
+
+[+] Found domain(s):
+
+        [+] POLOSMB
+        [+] Builtin
+
+[+] Password Info for Domain: POLOSMB
+
+        [+] Minimum password length: 5
+        [+] Password history length: None
+        [+] Maximum password age: 37 days 6 hours 21 minutes 
+        [+] Password Complexity Flags: 000000
+
+                [+] Domain Refuse Password Change: 0
+                [+] Domain Password Store Cleartext: 0
+                [+] Domain Password Lockout Admins: 0
+                [+] Domain Password No Clear Change: 0
+                [+] Domain Password No Anon Change: 0
+                [+] Domain Password Complex: 0
+
+        [+] Minimum password age: None
+        [+] Reset Account Lockout Counter: 30 minutes 
+        [+] Locked Account Duration: 30 minutes 
+        [+] Account Lockout Threshold: None
+        [+] Forced Log off Time: 37 days 6 hours 21 minutes 
+
+
+[+] Retieved partial password policy with rpcclient:
+
+Password Complexity: Disabled
+Minimum Password Length: 5
+
+
+ =============================== 
+|    Groups on 10.10.201.251    |
+ =============================== 
+
+[+] Getting builtin groups:
+
+[+] Getting builtin group memberships:
+
+[+] Getting local groups:
+
+[+] Getting local group memberships:
+
+[+] Getting domain groups:
+
+[+] Getting domain group memberships:
+
+ ======================================================================== 
+|    Users on 10.10.201.251 via RID cycling (RIDS: 500-550,1000-1050)    |
+ ======================================================================== 
+[I] Found new SID: S-1-22-1
+[I] Found new SID: S-1-5-21-434125608-3964652802-3194254534
+[I] Found new SID: S-1-5-32
+[+] Enumerating users using SID S-1-22-1 and logon username '', password ''
+
+
+
+
+
+
+SMB flag
+THM{smb_is_fun_eh?}
+
+
+
+
+
+#lets move to TELNET
+nmap result:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
